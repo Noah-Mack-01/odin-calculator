@@ -5,6 +5,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: aliceblue;
+    font-family: "Orbitron";
 }
 
 #calc-box {
@@ -58,7 +59,7 @@ body {
     height: 20%;
     width: auto;
     min-width: 23%;
-
+    padding-bottom: 10px;
 }
 
 .operator, .num {
@@ -99,7 +100,7 @@ body {
 }
 
 #back {
-    font-size: 20pt;
+    font-size: 16pt;
 }
 
 @keyframes blink-ani {
