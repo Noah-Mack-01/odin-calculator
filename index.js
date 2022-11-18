@@ -17,6 +17,8 @@ console.log(total);
 // examples: Operand (+, 2 2) equates to four.
 let past_inp = 0;
 let cur_inp = "";
+let neg=false;
+const operation = {};
 
 function refresh() {
     document.getElementById("input").innerHTML=cur_inp;
@@ -65,19 +67,15 @@ window.addEventListener("keyup", (event) => {
     else key.classList.remove("pressed");
 
     if (key.classList.contains("num")) {
-        cur_inp = cur_inp + event.key;
+        cur_inp = +(cur_inp + event.key);   
     }
 
     if (key.classList.contains("operator")) {
-        if (event.key == "-") {
-            if (cur_inp == "") cur_inp = "-";
-            else if (cur_inp == "-") cur_inp = "";
-        }
 
     }
 
     if (key.id == "back") {
-        if (cur_inp<10 && cur_inp>-10) cur_inp="";
+        if ((cur_inp<10 && cur_inp>-10) || cur_inp == "-") cur_inp="";
         else cur_inp = `${Math.floor(+cur_inp / 10)}`
     }
 
@@ -85,6 +83,27 @@ window.addEventListener("keyup", (event) => {
 
     refresh();
 });
+
+function receiveOperator(char) {
+    if (char == "-") {
+        if (cur_inp == "") { cur_inp = "-"; neg = true; }
+        else if (cur_inp == "-") { cur_inp = ""; neg= false; }
+    }
+
+    else {
+
+        switch (char) {
+            case "-":
+                break;
+            case "+":
+                break;
+            case "*":
+                break;
+            case "/":
+                break;
+        }
+    }
+}
 
 
 console.log(total[0].classList);

@@ -20,25 +20,19 @@ body {
     flex-direction: column;
 }
 
-p {
-    margin: 0;
-    padding: 0;
-    width: 86%;
-    height: 60%;
-    direction: rtl;
-    overflow: hidden;
-}
+
 
 #input {
-    max-width: 90%;
-    height: 100%;
-    overflow: hidden;;
-    text-overflow: ellipsis "...";
+    padding: 0;
+    width: 80%;
+    direction: rtl;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #input-box {
     text-overflow: clip;
-    margin-top: 10%;
+    margin: 10px 0 0 0;
     padding: 0 10px 10px 0;
     width: 75%;
     height: 8%;
@@ -98,7 +92,7 @@ p {
 
 .num {
     align-items: center;
-    width: 31%;
+    min-width: 31%;
     height: 23.5%;
     font-size: 18pt;
 }
