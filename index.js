@@ -68,8 +68,17 @@ window.addEventListener("keyup", (event) => {
         cur_inp = cur_inp + event.key;
     }
 
+    if (key.classList.contains("operator")) {
+        if (event.key == "-") {
+            if (cur_inp == "") cur_inp = "-";
+            else if (cur_inp == "-") cur_inp = "";
+        }
+
+    }
+
     if (key.id == "back") {
-        cur_inp = `${Math.floor(+cur_inp / 10)}`
+        if (cur_inp<10 && cur_inp>-10) cur_inp="";
+        else cur_inp = `${Math.floor(+cur_inp / 10)}`
     }
 
     else {}
