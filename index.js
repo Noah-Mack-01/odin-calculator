@@ -68,6 +68,12 @@ window.addEventListener("keyup", (event) => {
         cur_inp = cur_inp + event.key;
     }
 
+    if (key.id == "back") {
+        cur_inp = `${Math.floor(+cur_inp / 10)}`
+    }
+
+    else {}
+
     refresh();
 });
 
