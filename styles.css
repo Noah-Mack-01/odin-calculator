@@ -20,8 +20,24 @@ body {
     flex-direction: column;
 }
 
+p {
+    margin: 0;
+    padding: 0;
+    width: 86%;
+    height: 60%;
+    direction: rtl;
+    overflow: hidden;
+}
+
+#input {
+    max-width: 90%;
+    height: 100%;
+    overflow: hidden;;
+    text-overflow: ellipsis "...";
+}
 
 #input-box {
+    text-overflow: clip;
     margin-top: 10%;
     padding: 0 10px 10px 0;
     width: 75%;
