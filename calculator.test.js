@@ -1,4 +1,4 @@
-const calculator = require("./calculator-events");
+const calculator = require("./calculator");
 
 
 describe("Testing Calculator Functionality.",()=>{

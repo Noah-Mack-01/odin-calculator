@@ -1,6 +1,6 @@
 
 
-let calculator = require("./calculator-events");
+let calculator = require("./calculator");
 
 /**
  * What variables are we pulling over from the old model?
@@ -23,17 +23,17 @@ function onBackSpace() {
         onClear(true);
     }
     else {
-
         // if the current input is a single digit, or just a negative sign, set to blank.
         // (negative && !calc.input.atomic) means if its essentially -0.
         let input = calc.input.atomic;
+        let func = (input> 0) ? Math.floor : Math.ceil;
         if ((Math.abs(input) < 10) || (negative && !calc.input.atomic)) {calc.input = {atomic:0}; }
         else {
             // how to remove a digit?
             // if its a whole number, withdraw the first digit.
             // if not, go through new function below.
-            if (Math.floor(input) == input) calc.input.atomic = Math.floor(input / 10);
-            else calc.input.atomic = truncDecimal(input);
+            if (func(input) == input) calc.input.atomic = func(input / 10);
+            else calc.input.atomic = truncDecimal(input, func);
         }
     }
 }
@@ -53,23 +53,17 @@ function onOperator(operator) {
 }
 
 
-function truncDecimal(number) {
+function truncDecimal(number, func) {
+
+    if (func(number) == number) return number;
+
     let count = 0;
     while (Math.floor(number * Math.pow(10,count)) != number * Math.pow(10, count)) count++;
-    return Math.floor(number * Math.pow(10, count - 1)) * Math.pow(10, -count + 1);
+    return func(number * Math.pow(10, count - 1)) * Math.pow(10, -count + 1);
 }
 
-function refresh() {
-    let string;
-    // if we're looking at a result, render the result.
-    if (result) string = calc.solver();
-    
-    // basically saying, if the input is 0, just return "". Only time we should see 0 is if
-    // were looking for a returned value.
-    else string = calc.input.atomic ? calc.input.atomic : ""; 
-    
-    document.getElementById("input").innerHTML=`${string}`; 
-}
 
 
 module.exports.truncDecimal = truncDecimal;
+module.exports.onBackSpace = onBackSpace;
+module.exports.calculator = calc;
