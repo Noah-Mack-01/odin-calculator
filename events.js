@@ -1,6 +1,4 @@
-
-
-let calculator = require("./calculator");
+import calculator from "./calculator.js";
 
 /**
  * What variables are we pulling over from the old model?
@@ -11,8 +9,7 @@ let calculator = require("./calculator");
 
 let calc = new calculator();
 let result = false, negative = false;
-let cur_inp = "";
-
+let dec_place = 0;
 /**
  * What functionality is needed?
  * -> on Enter, on Operator, on Number, on Backspace, on CE events.
@@ -33,37 +30,57 @@ function onBackSpace() {
             // if its a whole number, withdraw the first digit.
             // if not, go through new function below.
             if (func(input) == input) calc.input.atomic = func(input / 10);
-            else calc.input.atomic = truncDecimal(input, func);
+            else {
+                calc.input.atomic = truncDecimal(input, func);
+                if (dec_place > 0) dec_place--;
+            }
         }
-    }
-}
-
-function onClear(total=false) {
-    if (total) {
-        calc = new calculator();
-        result = false, negative = false;
-    } else {
-        result = true; negative = false;
-        calc.input.atomic = 0;
     }
 }
 
 function onOperator(operator) {
     calc.pusher(operator);
+    dec_place = 0;
 }
 
+function onClear(full=false) {
+    calc.reset(full);
+    dec_place = 0;
+}
+
+function onNumber(num) {
+    let string = `${calc.input.atomic}`;
+    if (dec_place == 0) string+='0';
+    if (num == '.') {
+        if (dec_place) return;
+        dec_place=1; return;
+    }
+    string=`${+string + (num*Math.pow(1/10,dec_place))}`;
+    calc.input.atomic = +string;
+    if (dec_place != 0) dec_place++;
+}
 
 function truncDecimal(number, func) {
-
     if (func(number) == number) return number;
-
     let count = 0;
     while (Math.floor(number * Math.pow(10,count)) != number * Math.pow(10, count)) count++;
     return func(number * Math.pow(10, count - 1)) * Math.pow(10, -count + 1);
 }
 
+function onSolve() {
+    calc.input.atomic = calc.solver();
+    calc.processed = {atomic: 0};
+    calc.operator = '+';
+}
 
 
+/** 
 module.exports.truncDecimal = truncDecimal;
 module.exports.onBackSpace = onBackSpace;
+module.exports.onNumber = onNumber;
+module.exports.onOperator = onOperator;
+module.exports.onClear = onClear;
+module.exports.onSolve = onSolve;
 module.exports.calculator = calc;
+*/
+export {truncDecimal, onBackSpace, onNumber, onOperator, onClear, onSolve, calc}

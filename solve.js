@@ -9,7 +9,7 @@
  * Lets come up with Mathematical Operations, first.
  */
 
-function solve(operand) {
+export default function solve(operand) {
     
     // Operand can be the following struct:
     /**
@@ -24,14 +24,12 @@ function solve(operand) {
     if ("atomic" in operand) return operand.atomic; 
     switch (operand.operator) {
         case '+':
-            return (solve(operand.operand1) + solve(operand.operand2));
+            return +(solve(operand.operand1) + solve(operand.operand2)).toPrecision(10);
         case '-':
-            return (solve(operand.operand1) - solve(operand.operand2));
+            return +(solve(operand.operand1) - solve(operand.operand2)).toPrecision(10);
         case '/':    
-            return (solve(operand.operand1) / solve(operand.operand2));
+            return +(solve(operand.operand1) / solve(operand.operand2)).toPrecision(10);
         case '*':
-            return (solve(operand.operand1) * solve(operand.operand2));
+            return +(solve(operand.operand1) * solve(operand.operand2)).toPrecision(10);
     }
 }
-
-module.exports = solve;

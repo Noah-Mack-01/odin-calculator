@@ -3,7 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <link href="styles.css" rel="stylesheet">
-        <script src="revised-index.js" defer></script>
+        <script type="module" src="solve.js"></script>
+        <script type="module" src="calculator.js"></script>
+        <script type="module" src="events.js"></script>
+        <script type="module" src="index2.js" defer></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
@@ -29,11 +32,11 @@
                     <div data-key="8" class="num">8</div>
                     <div data-key="9" class="num">9</div>
                     <div data-key="0" class="num">0</div>
-                    <div data-key="Escape" class="operator" id="clear">CE</div>
+                    <div data-key="Escape" id="clear">CE</div>
                 </div>
                 <div id="side-ops">
-                    <div data-key="=" id="eq" class="operator">=</div>
-                    <div data-key="Backspace" id="back" class="operator">back</div>
+                    <div data-key="=" id="eq">=</div>
+                    <div data-key="Backspace" id="back">back</div>
 
                 </div>
             </div>

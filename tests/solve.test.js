@@ -1,4 +1,4 @@
-const solve = require('./solve');
+import solve from "./solve";
 
 let atomicOne = {atomic:1}
 let atomicTwo = {atomic:2}

@@ -1,5 +1,5 @@
-const calculator = require("./calculator");
-
+//const calculator = require("./calculator");
+import calculator from "./calculator.js";
 
 describe("Testing Calculator Functionality.",()=>{
 

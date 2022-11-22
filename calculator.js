@@ -1,7 +1,6 @@
-const solve = require("./solve"); // arithmetic operations.
+import solve from "./solve.js";
 
-
-module.exports = class calculator {
+export default class calculator {
     /**
      * This constructor will be used when we've solved a prior 
      * equation, only to receive a new operator afterwards.
@@ -24,13 +23,13 @@ module.exports = class calculator {
     pusher(operator) {
         let newOperand = {operator:this.operator, operand1:this.processed, operand2:this.input};
         this.processed = {atomic: solve(newOperand)}
-        this.input = {};
+        this.input = {atomic:0};
         this.operator=operator;
     }
 
     
     solver() {
-        return solve({operator:this.operator, operand1:this.processed, operand2:this.input});
+        return +(solve({operator:this.operator, operand1:this.processed, operand2:this.input}).toPrecision(10));
     }
 
 
@@ -38,4 +37,18 @@ module.exports = class calculator {
     get result() {
         return this.processed.atomic;
     }
+
+
+    reset(full=false) {
+        if (full) {
+            this.input = {atomic:0},
+            this.processed = {atomic:0},
+            this.operator = '+';
+        }
+
+        else {
+            this.input = {atomic:0}
+        }
+    }
+
 }
