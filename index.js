@@ -55,6 +55,7 @@ total.forEach(el => {
 
 
 window.addEventListener("keydown", (event) => {
+    console.log(event.key);
     let key = document.querySelector(`div[data-key="${event.key}"]`);
     if (key == null || key.classList.contains("pressed")) return;
     else key.classList.add("pressed");

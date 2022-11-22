@@ -17,6 +17,7 @@ body {
     border-radius: 1rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -105,8 +106,13 @@ body {
     height: 75%;
 }
 
+#clear {
+    width: 64%;
+}
+
 #side-ops .operator {
     flex-grow: 2;
+    margin: 2px 0;
 }
 
 #back {

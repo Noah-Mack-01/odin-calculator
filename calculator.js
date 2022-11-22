@@ -28,7 +28,7 @@ module.exports = class calculator {
         this.operator=operator;
     }
 
-
+    
     solver() {
         return solve({operator:this.operator, operand1:this.processed, operand2:this.input});
     }
